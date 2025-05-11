@@ -151,82 +151,15 @@
   color: var(--primary-accent);
 }
 
-/* Note cards and staff */
-.staff-container {
-  height: 120px; /* Increased height for better spacing */
-  position: relative;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+/* Styling for the note images */
+.note-card .note-image {
+  display: block; /* Removes extra space below image */
+  max-width: 100%; /* Ensures image is responsive and fits card */
+  height: auto;   /* Maintains aspect ratio */
+  margin: 0 auto; /* Centers image if its width is less than card width */
+  object-fit: contain; /* Ensures entire image is visible, scaled down if needed */
+  min-height: 80px; /* Give some minimum height so cards don't collapse too much if image fails to load */
 }
-
-.clef {
-  font-family: var(--font-music);
-  font-size: 4.5em;
-  position: absolute;
-  left: 0px;
-  top: 50%;
-  transform: translateY(-48%);
-  color: #333; /* Darker for contrast */
-}
-
-.staff-lines {
-  position: relative;
-  width: calc(100% - 50px);
-  margin-left: 45px; 
-}
-
-.staff-lines .line, .staff-lines .ledger-line {
-  background-color: #333; /* Darker color for better visibility */
-  height: 3px; /* Thicker lines for better visibility */
-  width: 100%;
-  margin-bottom: 14px; /* Increased spacing between lines for better distinction */
-  position: relative;
-}
-
-.staff-lines .line:last-child { 
-  margin-bottom: 0; 
-}
-
-.staff-lines .ledger-line {
-  width: calc(var(--note-size) * 2.2);
-  position: absolute;
-  background-color: #333;
-}
-
-.note-head {
-  width: 26px; /* Slightly larger */
-  height: 26px; /* Slightly larger */
-  background-color: var(--primary-accent);
-  border-radius: 50%;
-  position: absolute;
-  left: 50%; 
-  transform: translateX(-50%);
-  box-shadow: 0 3px 5px rgba(0,0,0,0.4); /* Enhanced shadow for depth */
-  z-index: 2;
-}
-
-/* Line through note for notes that fall on a line */
-.note-card.on-line .note-head::before {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140%; /* Wider line */
-  height: 3px; /* Match staff line thickness */
-  background-color: #333;
-  z-index: 1;
-}
-
-/* Individual note positioning is now handled by JavaScript */
-/* Remove old bottom positioning rules: */
-/* .note-card.note-c-js .ledger-line { bottom: ...; } */
-/* .note-card.note-c-js .note-head { bottom: ...; } */
-/* etc. for all notes D, E, F, G, A, H */
 
 /* Success popup */
 .success-popup {
@@ -322,34 +255,8 @@
     font-size: 2.2em;
   }
   
-  /* Adjusted staff sizes for mobile */
-  .staff-container { 
-    height: 110px; 
+  /* Note image adjustments for mobile if needed, for now, rely on max-width and auto height */
+  .note-card .note-image {
+    min-height: 70px; /* Slightly smaller min-height for mobile */
   }
-  
-  .clef { 
-    font-size: 4em; 
-    left: 2px; 
-    transform: translateY(-47%);
-  }
-  
-  .staff-lines { 
-    width: calc(100% - 40px); 
-    margin-left: 38px; 
-  }
-
-  .staff-lines .line, .staff-lines .ledger-line {
-    margin-bottom: 12px; /* Slightly reduced spacing for smaller screens */
-    height: 2.5px; /* Still thick enough to be visible */
-  }
-
-  .note-card.on-line .note-head::before {
-    height: 2.5px; /* Match mobile staff line thickness */
-  }
-
-  /* Adjusted mobile note positions are now handled by JavaScript */
-  /* Remove old bottom positioning rules for mobile: */
-  /* .note-card.note-c-js .ledger-line { bottom: ...; } */
-  /* .note-card.note-c-js .note-head { bottom: ...; } */
-  /* etc. for mobile */
 } 

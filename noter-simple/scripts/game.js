@@ -69,8 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
             namesColumn.appendChild(card);
             addCardEventListener(card);
         });
-
-        adjustNotePositions();
     }
 
     /**
@@ -199,96 +197,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start the game
     setupGame();
-}); 
-
-/**
- * Adjusts the vertical position of note heads based on staff lines.
- */
-function adjustNotePositions() {
-    const noteCards = document.querySelectorAll('.note-card');
-    if (noteCards.length === 0) return;
-
-    noteCards.forEach(card => {
-        const staffLinesEl = card.querySelector('.staff-lines');
-        const noteHeadEl = card.querySelector('.note-head');
-        const ledgerLineEl = card.querySelector('.ledger-line'); // Might be null if not note C
-        
-        if (!staffLinesEl || !noteHeadEl) return;
-
-        const physicalLines = Array.from(staffLinesEl.querySelectorAll('.line'));
-        if (physicalLines.length < 3) return; // Need at least 3 lines for E, G, H
-
-        // Ensure elements are rendered and have dimensions
-        if (physicalLines[0].offsetHeight === 0) {
-            // Elements might not be fully rendered yet, try again shortly
-            // This can happen if called too early or display is none
-            // For simplicity, we assume they are visible. If issues persist, 
-            // a more robust check or a small delay might be needed.
-        }
-
-        const yLineE_center = physicalLines[0].offsetTop + physicalLines[0].offsetHeight / 2;
-        const yLineG_center = physicalLines[1].offsetTop + physicalLines[1].offsetHeight / 2;
-        const yLineH_center = physicalLines[2].offsetTop + physicalLines[2].offsetHeight / 2;
-
-        // The step is the distance between the centers of two adjacent lines (e.g., E and G)
-        // This corresponds to two "note intervals" (e.g., line to line).
-        // A single "note interval" (e.g., line to space) is half of this.
-        const stepBetweenLines = yLineG_center - yLineE_center; // e.g., from E up to G
-        const singleNoteInterval = stepBetweenLines / 2; // e.g., from E up to F
-
-        const noteName = card.dataset.pair;
-        let targetYcenterInStaffLines;
-
-        switch (noteName) {
-            case 'C':
-                targetYcenterInStaffLines = yLineE_center - stepBetweenLines;
-                if (ledgerLineEl) {
-                    ledgerLineEl.style.top = (targetYcenterInStaffLines - ledgerLineEl.offsetHeight / 2) + 'px';
-                    ledgerLineEl.style.left = '50%';
-                    ledgerLineEl.style.transform = 'translateX(-50%)';
-                }
-                break;
-            case 'D':
-                targetYcenterInStaffLines = yLineE_center - singleNoteInterval;
-                break;
-            case 'E':
-                targetYcenterInStaffLines = yLineE_center;
-                break;
-            case 'F':
-                targetYcenterInStaffLines = yLineE_center + singleNoteInterval;
-                break;
-            case 'G':
-                targetYcenterInStaffLines = yLineG_center;
-                break;
-            case 'A':
-                targetYcenterInStaffLines = yLineG_center + singleNoteInterval;
-                break;
-            case 'H':
-                targetYcenterInStaffLines = yLineH_center;
-                break;
-            default:
-                return; // Unknown note
-        }
-
-        // noteHeadEl is a child of staff-container, sibling of staff-lines
-        // So, its top is relative to staff-container.
-        // targetYcenterInStaffLines is relative to staff-lines top.
-        // So, we add staffLinesEl.offsetTop.
-        const noteHeadTop = staffLinesEl.offsetTop + targetYcenterInStaffLines - noteHeadEl.offsetHeight / 2;
-        noteHeadEl.style.top = noteHeadTop + 'px';
-        noteHeadEl.style.bottom = 'auto'; // Override any lingering bottom styles
-    });
-}
-
-// Adjust positions on initial load (after setupGame) and on resize
-document.addEventListener('DOMContentLoaded', () => {
-    // adjustNotePositions(); // Already called by setupGame which is in the other DOMContentLoaded
-    // Call it again here just to be sure if setupGame structure changes or if elements are added later
-    // However, to avoid multiple calls if setupGame also calls it, it's better to ensure one definite call path.
-    // The setupGame() in the original DOMContentLoaded will call adjustNotePositions.
-});
-
-window.addEventListener('resize', () => {
-    // Debounce this in a real app for performance
-    adjustNotePositions();
 }); 
