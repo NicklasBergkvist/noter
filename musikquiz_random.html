@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Slumpat Musikquiz – Musikaliska byggstenar</title>
+<style>
+ body{font-family:Arial,Helvetica,sans-serif;background:#f7f8fc;color:#222;margin:0;padding:20px;}
+ h1{text-align:center;color:#2b4a7f;}
+ .question{margin-bottom:20px;padding:15px;background:white;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+ .question h2{font-size:1.1em;margin:0 0 10px;}
+ label{display:block;margin-bottom:6px;cursor:pointer;}
+ .correct{color:green;font-weight:bold;}
+ .wrong{color:red;font-weight:bold;}
+ #submitBtn,#reloadBtn{display:block;margin:30px auto;padding:15px 25px;font-size:1em;background:#2b4a7f;color:white;border:none;border-radius:8px;cursor:pointer;}
+ #result{font-size:1.2em;text-align:center;margin-top:20px;}
+</style>
+</head>
+<body>
+<h1>Musikquiz: Musikaliska byggstenar</h1>
+<p>Varje gång du laddar om sidan får du ett nytt quiz med 10 slumpade frågor.</p>
+<div id="quizContainer"></div>
+<button id="submitBtn" onclick="checkAnswers()">Visa resultat</button>
+<button id="reloadBtn" onclick="location.reload()">Nya frågor</button>
+<div id="result"></div>
+
+<script>
+const allQuestions = [{"q": "Hur många linjer finns det i ett notsystem?", "opts": ["4", "5", "6"], "correct": "5"}, {"q": "Vad betyder ordet ”klav” enligt häftet?", "opts": ["Nyckel", "Streck", "Rytm"], "correct": "Nyckel"}, {"q": "Vilken klav visar tonen F mellan två prickar?", "opts": ["G‑klav", "F‑klav", "C‑klav"], "correct": "F‑klav"}, {"q": "Vilket förtecken sänker en ton ett halvt tonsteg?", "opts": ["♭‑förtecken (b)", "♯‑förtecken (#)", "Naturlig (♮)"], "correct": "♭‑förtecken (b)"}, {"q": "Vad kallas tonerna C D E F G A B på pianots vita tangenter?", "opts": ["Stamtoner", "Halvtoner", "Molltoner"], "correct": "Stamtoner"}, {"q": "Vilken not har dubbelt så långt värde som en fjärdedelsnot?", "opts": ["Åttondelsnot", "Halvnot", "Helnot"], "correct": "Halvnot"}, {"q": "Hur många sextondelsnoter motsvarar en helnot?", "opts": ["8", "12", "16"], "correct": "16"}, {"q": "I vilken enhet mäts tempo enligt häftet?", "opts": ["dB", "BPM", "Hz"], "correct": "BPM"}, {"q": "Vilket instrument anger tydligast pulsen i populärmusik enligt texten?", "opts": ["Gitarr", "Keyboard", "Trummor"], "correct": "Trummor"}, {"q": "Vilken symbol används för gradvis sänkning av ljudstyrkan?", "opts": ["Crescendo <", "Diminuendo >", "Fermat 𝄐"], "correct": "Diminuendo >"}, {"q": "Vilket dynamiktecken betyder ”svagt”?", "opts": ["f (forte)", "p (piano)", "ff (fortissimo)"], "correct": "p (piano)"}, {"q": "Vad heter delen som avslutar en låt?", "opts": ["Intro", "Vers", "Outro"], "correct": "Outro"}, {"q": "Vad kallas det korta instrumentala partiet mellan refräng och vers?", "opts": ["Mellanspel", "Brygga", "Stick"], "correct": "Mellanspel"}, {"q": "Vilken del sjungs bara en gång i låten och skiljer sig melodiskt och harmoniskt?", "opts": ["Refräng", "Stick", "Vers"], "correct": "Stick"}, {"q": "Vilken del kommer mellan vers och refräng och har ofta ett annat harmoniskt mönster?", "opts": ["Brygga", "Solo", "Outro"], "correct": "Brygga"}, {"q": "Equalizer används för att ändra musikens …?", "opts": ["Puls", "Klang", "Tempo"], "correct": "Klang"}, {"q": "Vad betyder styrkegrad ”ff”?", "opts": ["Mycket svagt", "Medelstarkt", "Mycket starkt"], "correct": "Mycket starkt"}, {"q": "Vad heter tonen G när den sänks ett halvt tonsteg?", "opts": ["Gess", "Giss", "Gsus"], "correct": "Gess"}, {"q": "Vilket notvärde liknas vid en hel tårta i häftet?", "opts": ["Halvnot", "Helnot", "Fjärdedelsnot"], "correct": "Helnot"}, {"q": "Hur många fjärdedelsnoter får plats i en 4/4‑takt?", "opts": ["2", "3", "4"], "correct": "4"}, {"q": "Vad heter den första delen av en låt enligt formen?", "opts": ["Intro", "Refräng", "Vers"], "correct": "Intro"}, {"q": "Vid sänkning av en ton läggs vilken ändelse till notnamnet?", "opts": ["‑iss", "‑ess", "‑us"], "correct": "‑ess"}, {"q": "Vid höjning av en ton läggs vilken ändelse till notnamnet?", "opts": ["‑ess", "‑iss", "‑us"], "correct": "‑iss"}, {"q": "Vilket dynamiktecken betyder ”medelstarkt”?", "opts": ["mf", "mp", "pp"], "correct": "mf"}];
+function shuffle(array){for(let i=array.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[array[i],array[j]]=[array[j],array[i]];}return array;}
+
+function renderQuiz(){
+   const selected = shuffle([...allQuestions]).slice(0,10);
+   const container = document.getElementById('quizContainer');
+   selected.forEach((q,idx)=>{
+       const qDiv=document.createElement('div');
+       qDiv.className='question';
+       qDiv.innerHTML='<h2>'+(idx+1)+'. '+q.q+'</h2>';
+       const opts=shuffle([...q.opts]);
+       opts.forEach(opt=>{
+           const id='q'+idx+'_'+opt.replace(/[^a-zA-Z0-9]/g,'');
+           qDiv.innerHTML+= '<label><input type="radio" name="q'+idx+'" value="'+opt+'"> '+opt+'</label>';
+       });
+       qDiv.dataset.correct=q.correct;
+       container.appendChild(qDiv);
+   });
+}
+
+function checkAnswers(){
+  let score = 0;
+  const questions = document.querySelectorAll('.question');
+  questions.forEach(q=>{
+     const correct = q.dataset.correct;
+     const selected = q.querySelector('input:checked');
+     if(selected){
+        if(selected.value===correct){
+           score++;
+           selected.parentElement.classList.add('correct');
+        }else{
+           selected.parentElement.classList.add('wrong');
+        }
+     }
+  });
+  document.getElementById('result').innerHTML = 'Du fick <strong>'+score+' / '+questions.length+'</strong> rätt!';
+  window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+}
+
+renderQuiz();
+</script>
+
+</body>
+</html>
