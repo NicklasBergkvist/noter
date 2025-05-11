@@ -153,7 +153,7 @@
 
 /* Note cards and staff */
 .staff-container {
-  height: 90px;
+  height: 120px; /* Increased height for better spacing */
   position: relative;
   margin-bottom: 5px;
   display: flex;
@@ -169,7 +169,7 @@
   left: 0px;
   top: 50%;
   transform: translateY(-48%);
-  color: #555;
+  color: #333; /* Darker for contrast */
 }
 
 .staff-lines {
@@ -179,32 +179,36 @@
 }
 
 .staff-lines .line, .staff-lines .ledger-line {
-  background-color: var(--text-color);
-  height: 1.5px;
+  background-color: #333; /* Darker color for better visibility */
+  height: 3px; /* Thicker lines for better visibility */
   width: 100%;
-  margin-bottom: calc(var(--note-size) * 0.8); 
+  margin-bottom: 14px; /* Increased spacing between lines for better distinction */
+  position: relative;
 }
+
 .staff-lines .line:last-child { 
   margin-bottom: 0; 
 }
 
 .staff-lines .ledger-line {
-  width: calc(var(--note-size) * 1.8);
+  width: calc(var(--note-size) * 2.2);
   position: absolute;
-  background-color: #666;
+  background-color: #333;
 }
 
 .note-head {
-  width: var(--note-size);
-  height: var(--note-size);
+  width: 26px; /* Slightly larger */
+  height: 26px; /* Slightly larger */
   background-color: var(--primary-accent);
   border-radius: 50%;
   position: absolute;
   left: 50%; 
   transform: translateX(-50%);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.4); /* Enhanced shadow for depth */
+  z-index: 2;
 }
 
+/* Line through note for notes that fall on a line */
 .note-card.on-line .note-head::before {
   content: '';
   display: block;
@@ -212,21 +216,35 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 120%;
-  height: 2px;
-  background-color: var(--text-color);
+  width: 140%; /* Wider line */
+  height: 3px; /* Match staff line thickness */
+  background-color: #333;
   z-index: 1;
 }
 
-/* Individual note positioning */
-.note-card.note-c-js .ledger-line { bottom: calc(var(--note-size) * -0.45); }
-.note-card.note-c-js .note-head { bottom: calc(var(--note-size) * -0.45); }
-.note-card.note-d-js .note-head { bottom: calc(var(--note-size) * 0.35); }
-.note-card.note-e-js .note-head { bottom: calc(var(--note-size) * 1.15); }
-.note-card.note-f-js .note-head { bottom: calc(var(--note-size) * 1.95); }
-.note-card.note-g-js .note-head { bottom: calc(var(--note-size) * 2.75); }
-.note-card.note-a-js .note-head { bottom: calc(var(--note-size) * 3.55); }
-.note-card.note-h-js .note-head { bottom: calc(var(--note-size) * 4.35); }
+/* Individual note positioning - Empirically adjusted to match visual target */
+
+/* C - on ledger line below staff */
+.note-card.note-c-js .ledger-line { bottom: -7px; }
+.note-card.note-c-js .note-head { bottom: -18.5px; }
+
+/* D - between ledger line and first line */
+.note-card.note-d-js .note-head { bottom: -10px; }
+
+/* E - on first line */
+.note-card.note-e-js .note-head { bottom: -1.5px; }
+
+/* F - between first and second lines */
+.note-card.note-f-js .note-head { bottom: 7px; }
+
+/* G - on second line */
+.note-card.note-g-js .note-head { bottom: 15.5px; }
+
+/* A - between second and third lines */
+.note-card.note-a-js .note-head { bottom: 24px; }
+
+/* H - on third line */
+.note-card.note-h-js .note-head { bottom: 32.5px; }
 
 /* Success popup */
 .success-popup {
@@ -322,8 +340,9 @@
     font-size: 2.2em;
   }
   
+  /* Adjusted staff sizes for mobile */
   .staff-container { 
-    height: 80px; 
+    height: 110px; 
   }
   
   .clef { 
@@ -336,4 +355,23 @@
     width: calc(100% - 40px); 
     margin-left: 38px; 
   }
+
+  .staff-lines .line, .staff-lines .ledger-line {
+    margin-bottom: 12px; /* Slightly reduced spacing for smaller screens */
+    height: 2.5px; /* Still thick enough to be visible */
+  }
+
+  .note-card.on-line .note-head::before {
+    height: 2.5px; /* Match mobile staff line thickness */
+  }
+
+  /* Adjusted mobile note positions - Empirically adjusted */
+  .note-card.note-c-js .ledger-line { bottom: -6px; }
+  .note-card.note-c-js .note-head { bottom: -17.75px; }
+  .note-card.note-d-js .note-head { bottom: -10.5px; }
+  .note-card.note-e-js .note-head { bottom: -3.25px; }
+  .note-card.note-f-js .note-head { bottom: 4px; }
+  .note-card.note-g-js .note-head { bottom: 11.25px; }
+  .note-card.note-a-js .note-head { bottom: 18.5px; }
+  .note-card.note-h-js .note-head { bottom: 25.75px; }
 } 
