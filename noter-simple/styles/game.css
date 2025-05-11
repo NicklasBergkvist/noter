@@ -222,29 +222,11 @@
   z-index: 1;
 }
 
-/* Individual note positioning - Empirically adjusted to match visual target */
-
-/* C - on ledger line below staff */
-.note-card.note-c-js .ledger-line { bottom: -7px; }
-.note-card.note-c-js .note-head { bottom: -18.5px; }
-
-/* D - between ledger line and first line */
-.note-card.note-d-js .note-head { bottom: -10px; }
-
-/* E - on first line */
-.note-card.note-e-js .note-head { bottom: -1.5px; }
-
-/* F - between first and second lines */
-.note-card.note-f-js .note-head { bottom: 7px; }
-
-/* G - on second line */
-.note-card.note-g-js .note-head { bottom: 15.5px; }
-
-/* A - between second and third lines */
-.note-card.note-a-js .note-head { bottom: 24px; }
-
-/* H - on third line */
-.note-card.note-h-js .note-head { bottom: 32.5px; }
+/* Individual note positioning is now handled by JavaScript */
+/* Remove old bottom positioning rules: */
+/* .note-card.note-c-js .ledger-line { bottom: ...; } */
+/* .note-card.note-c-js .note-head { bottom: ...; } */
+/* etc. for all notes D, E, F, G, A, H */
 
 /* Success popup */
 .success-popup {
@@ -365,13 +347,9 @@
     height: 2.5px; /* Match mobile staff line thickness */
   }
 
-  /* Adjusted mobile note positions - Empirically adjusted */
-  .note-card.note-c-js .ledger-line { bottom: -6px; }
-  .note-card.note-c-js .note-head { bottom: -17.75px; }
-  .note-card.note-d-js .note-head { bottom: -10.5px; }
-  .note-card.note-e-js .note-head { bottom: -3.25px; }
-  .note-card.note-f-js .note-head { bottom: 4px; }
-  .note-card.note-g-js .note-head { bottom: 11.25px; }
-  .note-card.note-a-js .note-head { bottom: 18.5px; }
-  .note-card.note-h-js .note-head { bottom: 25.75px; }
+  /* Adjusted mobile note positions are now handled by JavaScript */
+  /* Remove old bottom positioning rules for mobile: */
+  /* .note-card.note-c-js .ledger-line { bottom: ...; } */
+  /* .note-card.note-c-js .note-head { bottom: ...; } */
+  /* etc. for mobile */
 } 
