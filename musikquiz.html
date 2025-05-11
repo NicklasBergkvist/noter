@@ -1,0 +1,139 @@
+html_content = """
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Musikquiz – Musikaliska byggstenar</title>
+<style>
+ body{font-family:Arial,Helvetica,sans-serif;background:#f7f8fc;color:#222;margin:0;padding:20px;}
+ h1{text-align:center;color:#2b4a7f;}
+ .question{margin-bottom:20px;padding:15px;background:white;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+ .question h2{font-size:1.1em;margin:0 0 10px;}
+ label{display:block;margin-bottom:6px;cursor:pointer;}
+ .correct{color:green;font-weight:bold;}
+ .wrong{color:red;font-weight:bold;}
+ #submitBtn{display:block;margin:30px auto;padding:15px 25px;font-size:1em;background:#2b4a7f;color:white;border:none;border-radius:8px;cursor:pointer;}
+ #result{font-size:1.2em;text-align:center;margin-top:20px;}
+</style>
+</head>
+<body>
+<h1>Musikquiz: Musikaliska byggstenar</h1>
+<p>Välj rätt svar på frågorna nedan och klicka sedan på ”Visa resultat”.</p>
+
+<form id="quizForm">
+  <div class="question">
+    <h2>1. Vilken klav börjar på linjen märkt G i notsystemet?</h2>
+    <label><input type="radio" name="q1" value="gklav"> G‑klav (diskantklav)</label>
+    <label><input type="radio" name="q1" value="fklav"> F‑klav (basklav)</label>
+    <label><input type="radio" name="q1" value="cklav"> C‑klav</label>
+  </div>
+
+  <div class="question">
+    <h2>2. Vilket förtecken höjer en ton ett halvt tonsteg?</h2>
+    <label><input type="radio" name="q2" value="kors"> Korsförtecken (#)</label>
+    <label><input type="radio" name="q2" value="bb"> ♭‑förtecken (b)</label>
+    <label><input type="radio" name="q2" value="nat"> Naturlig (♮)</label>
+  </div>
+
+  <div class="question">
+    <h2>3. Vad heter tonen G när den höjs ett halvt tonsteg?</h2>
+    <label><input type="radio" name="q3" value="giss"> Giss</label>
+    <label><input type="radio" name="q3" value="gess"> Gess</label>
+    <label><input type="radio" name="q3" value="gsus"> Gsus</label>
+  </div>
+
+  <div class="question">
+    <h2>4. Hur många fjärdedelsnoter motsvarar en helnot?</h2>
+    <label><input type="radio" name="q4" value="4"> 4</label>
+    <label><input type="radio" name="q4" value="2"> 2</label>
+    <label><input type="radio" name="q4" value="8"> 8</label>
+  </div>
+
+  <div class="question">
+    <h2>5. Vad betyder BPM inom musik?</h2>
+    <label><input type="radio" name="q5" value="beats"> Beats per minute (slag per minut)</label>
+    <label><input type="radio" name="q5" value="bars"> Bars per melody</label>
+    <label><input type="radio" name="q5" value="bass"> Bass pulse meter</label>
+  </div>
+
+  <div class="question">
+    <h2>6. Vilken del av en poplåt är oftast mest melodisk och återkommer med samma text?</h2>
+    <label><input type="radio" name="q6" value="refrang"> Refräng</label>
+    <label><input type="radio" name="q6" value="vers"> Vers</label>
+    <label><input type="radio" name="q6" value="stick"> Stick</label>
+  </div>
+
+  <div class="question">
+    <h2>7. Vilken kortare del kommer mellan vers och refräng och skapar en smidig övergång?</h2>
+    <label><input type="radio" name="q7" value="brygga"> Brygga</label>
+    <label><input type="radio" name="q7" value="intro"> Intro</label>
+    <label><input type="radio" name="q7" value="solo"> Solo</label>
+  </div>
+
+  <div class="question">
+    <h2>8. Vilket dynamiktecken motsvarar ”starkt”?</h2>
+    <label><input type="radio" name="q8" value="f"> f (forte)</label>
+    <label><input type="radio" name="q8" value="p"> p (piano)</label>
+    <label><input type="radio" name="q8" value="ff"> ff (fortissimo)</label>
+  </div>
+
+  <div class="question">
+    <h2>9. Vilken symbol används för att gradvis öka ljudstyrkan?</h2>
+    <label><input type="radio" name="q9" value="crescendo"> Crescendo &lt;</label>
+    <label><input type="radio" name="q9" value="diminuendo"> Diminuendo &gt;</label>
+    <label><input type="radio" name="q9" value="fermat"> Fermat 𝄐</label>
+  </div>
+
+  <div class="question">
+    <h2>10. Vad kallas de vita tangenterna på ett piano som ingår i C‑durskalan?</h2>
+    <label><input type="radio" name="q10" value="stamtoner"> Stamtoner</label>
+    <label><input type="radio" name="q10" value="halvtoner"> Halvtoner</label>
+    <label><input type="radio" name="q10" value="molltoner"> Molltoner</label>
+  </div>
+</form>
+
+<button id="submitBtn" onclick="checkAnswers()">Visa resultat</button>
+
+<div id="result"></div>
+
+<script>
+const correct = {
+  q1: 'gklav',
+  q2: 'kors',
+  q3: 'giss',
+  q4: '4',
+  q5: 'beats',
+  q6: 'refrang',
+  q7: 'brygga',
+  q8: 'f',
+  q9: 'crescendo',
+  q10: 'stamtoner'
+};
+
+function checkAnswers(){
+  let score = 0;
+  const total = Object.keys(correct).length;
+  for(const key in correct){
+    const selected = document.querySelector('input[name="'+key+'"]:checked');
+    if(!selected) continue;
+    if(selected.value === correct[key]){
+        score++;
+        selected.parentElement.classList.add('correct');
+    }else{
+        selected.parentElement.classList.add('wrong');
+    }
+  }
+  document.getElementById('result').innerHTML = 'Du fick <strong>'+score+' / '+total+'</strong> rätt!';
+  window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
+"""
+
+with open('/mnt/data/musikquiz.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("HTML-sidan är skapad på /mnt/data/musikquiz.html. Du kan ladda ner den från länken i svaret.")
+
