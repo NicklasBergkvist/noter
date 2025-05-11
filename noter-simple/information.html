@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information - Lär dig Noter!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Music&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/info.css">
+</head>
+<body>
+    <header class="main-nav">
+        <div class="nav-logo">Noter</div>
+        <ul class="nav-links">
+            <li>
+                <a href="index.html">Notprov</a>
+            </li>
+            <li>
+                <a href="information.html" class="active">Information</a>
+            </li>
+        </ul>
+    </header>
+
+    <main class="content">
+        <div class="info-page">
+            <h1>Information om Noter</h1>
+            
+            <div class="info-tabs">
+                <button class="tab-button active" data-tab="about">Om applikationen</button>
+                <button class="tab-button" data-tab="music">Musikteori</button>
+                <button class="tab-button" data-tab="how-to">Hur man spelar</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- About tab -->
+                <div class="tab-panel active" id="about-panel">
+                    <h2>Om Noter-applikationen</h2>
+                    <div class="info-card">
+                        <p>Noter är en interaktiv webbapplikation skapad för att hjälpa dig att lära dig noter på ett roligt och enkelt sätt.</p>
+                        <p>Denna applikation erbjuder ett minnesspel där du parar ihop noter med deras namn, vilket är perfekt för nybörjare som vill lära sig grunderna i musikteori.</p>
+                        <h3>Funktioner:</h3>
+                        <ul>
+                            <li>Interaktivt matchningsspel</li>
+                            <li>Grundläggande notlära</li>
+                            <li>Visuell representation av noter på notlinjerna</li>
+                            <li>Poängsystem för att hålla koll på dina framsteg</li>
+                            <li>Responsiv design som fungerar på alla enheter</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Music theory tab -->
+                <div class="tab-panel" id="music-panel">
+                    <h2>Grundläggande Musikteori</h2>
+                    <div class="info-card">
+                        <h3>Notsystemet</h3>
+                        <p>Notsystemet består av fem linjer och fyra mellanrum. Varje linje och mellanrum representerar en specifik ton på instrumentet.</p>
+                        
+                        <h3>G-klav (Diskantklav)</h3>
+                        <p>G-klaven, även kallad diskantklaven, är den vanligaste klaven och används för de flesta melodiinstrument. Den snurrar runt den andra linjen nerifrån, vilket markerar tonen G.</p>
+                        
+                        <h3>Noternas Namn</h3>
+                        <p>I västerländsk musik använder vi oftast namnen C, D, E, F, G, A, H (eller B i vissa länder) för att representera tonerna. Dessa upprepas i oktaver.</p>
+                        
+                        <div class="note-table">
+                            <div class="note-info">
+                                <div class="note-image note-c"></div>
+                                <div class="note-description">
+                                    <strong>C</strong> - Ligger under den första linjen med en hjälplinje
+                                </div>
+                            </div>
+                            <div class="note-info">
+                                <div class="note-image note-d"></div>
+                                <div class="note-description">
+                                    <strong>D</strong> - Ligger i mellanrummet under den första linjen
+                                </div>
+                            </div>
+                            <div class="note-info">
+                                <div class="note-image note-e"></div>
+                                <div class="note-description">
+                                    <strong>E</strong> - Ligger på den första linjen
+                                </div>
+                            </div>
+                            <div class="note-info">
+                                <div class="note-image note-f"></div>
+                                <div class="note-description">
+                                    <strong>F</strong> - Ligger i mellanrummet mellan första och andra linjen
+                                </div>
+                            </div>
+                            <div class="note-info">
+                                <div class="note-image note-g"></div>
+                                <div class="note-description">
+                                    <strong>G</strong> - Ligger på den andra linjen
+                                </div>
+                            </div>
+                            <div class="note-info">
+                                <div class="note-image note-a"></div>
+                                <div class="note-description">
+                                    <strong>A</strong> - Ligger i mellanrummet mellan andra och tredje linjen
+                                </div>
+                            </div>
+                            <div class="note-info">
+                                <div class="note-image note-h"></div>
+                                <div class="note-description">
+                                    <strong>H</strong> - Ligger på den tredje linjen
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- How to play tab -->
+                <div class="tab-panel" id="how-to-panel">
+                    <h2>Hur Man Spelar</h2>
+                    <div class="info-card">
+                        <ol class="howto-list">
+                            <li>
+                                <h3>Starta spelet</h3>
+                                <p>Klicka på "Notprov" i navigeringsmenyn för att starta spelet.</p>
+                            </li>
+                            <li>
+                                <h3>Välj en not</h3>
+                                <p>Klicka på en not från vänstra kolumnen. Den valda noten blir markerad.</p>
+                            </li>
+                            <li>
+                                <h3>Hitta rätt notnamn</h3>
+                                <p>Klicka på motsvarande notnamn i högra kolumnen för att para ihop dem.</p>
+                            </li>
+                            <li>
+                                <h3>Poäng</h3>
+                                <p>För varje korrekt par får du 10 poäng. För felaktiga par förlorar du 2 poäng.</p>
+                            </li>
+                            <li>
+                                <h3>Avsluta spelet</h3>
+                                <p>Spelet är klart när du har parat ihop alla noter med rätt namn. Du kan sedan välja att spela igen.</p>
+                            </li>
+                        </ol>
+                        
+                        <div class="tips-section">
+                            <h3>Tips:</h3>
+                            <ul>
+                                <li>Lär dig minnesregler för positionerna: "E ligger på första linjen" osv.</li>
+                                <li>Öva regelbundet för att bygga muskelminne och visuell igenkänning.</li>
+                                <li>Använd vår informationssida om musikteori för att förstå notsystemet bättre.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>© <span id="current-year"></span> Noter - Lär dig noter enkelt och roligt!</p>
+    </footer>
+
+    <script src="scripts/info.js"></script>
+</body>
+</html> 

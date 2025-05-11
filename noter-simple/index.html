@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lär dig Noter! - Modern Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Music&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/game.css">
+</head>
+<body>
+    <header class="main-nav">
+        <div class="nav-logo">Noter</div>
+        <ul class="nav-links">
+            <li>
+                <a href="index.html" class="active">Notprov</a>
+            </li>
+            <li>
+                <a href="information.html">Information</a>
+            </li>
+        </ul>
+    </header>
+
+    <main class="content">
+        <div class="game-container">
+            <h1>Para ihop Noter och Namn!</h1>
+            <div class="score-board">
+                Poäng: <span class="score-value" id="score">0</span>
+            </div>
+            
+            <div class="feedback-message" id="feedbackMessage"></div>
+
+            <div class="game-board">
+                <div class="cards-wrapper">
+                    <div class="notes-column" id="notesColumn">
+                        <div class="card note-card note-c-js" data-pair="C" data-type="note" tabindex="0">
+                            <div class="staff-container">
+                                <div class="clef">𝄞</div>
+                                <div class="staff-lines">
+                                    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+                                    <div class="ledger-line"></div>
+                                </div>
+                                <div class="note-head"></div>
+                            </div>
+                        </div>
+                        <div class="card note-card note-d-js" data-pair="D" data-type="note" tabindex="0">
+                            <div class="staff-container">
+                                <div class="clef">𝄞</div>
+                                <div class="staff-lines">
+                                    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+                                </div>
+                                <div class="note-head"></div>
+                            </div>
+                        </div>
+                        <div class="card note-card note-e-js on-line" data-pair="E" data-type="note" tabindex="0">
+                            <div class="staff-container">
+                                <div class="clef">𝄞</div>
+                                <div class="staff-lines">
+                                    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+                                </div>
+                                <div class="note-head"></div>
+                            </div>
+                        </div>
+                        <div class="card note-card note-f-js" data-pair="F" data-type="note" tabindex="0">
+                            <div class="staff-container">
+                                <div class="clef">𝄞</div>
+                                <div class="staff-lines">
+                                    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+                                </div>
+                                <div class="note-head"></div>
+                            </div>
+                        </div>
+                        <div class="card note-card note-g-js on-line" data-pair="G" data-type="note" tabindex="0">
+                            <div class="staff-container">
+                                <div class="clef">𝄞</div>
+                                <div class="staff-lines">
+                                    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+                                </div>
+                                <div class="note-head"></div>
+                            </div>
+                        </div>
+                        <div class="card note-card note-a-js" data-pair="A" data-type="note" tabindex="0">
+                            <div class="staff-container">
+                                <div class="clef">𝄞</div>
+                                <div class="staff-lines">
+                                    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+                                </div>
+                                <div class="note-head"></div>
+                            </div>
+                        </div>
+                        <div class="card note-card note-h-js on-line" data-pair="H" data-type="note" tabindex="0">
+                            <div class="staff-container">
+                                <div class="clef">𝄞</div>
+                                <div class="staff-lines">
+                                    <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+                                </div>
+                                <div class="note-head"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="names-column" id="namesColumn">
+                        <div class="card name-card name-c-js" data-pair="C" data-type="name" tabindex="0"><span class="card-label-text">C</span></div>
+                        <div class="card name-card name-d-js" data-pair="D" data-type="name" tabindex="0"><span class="card-label-text">D</span></div>
+                        <div class="card name-card name-e-js" data-pair="E" data-type="name" tabindex="0"><span class="card-label-text">E</span></div>
+                        <div class="card name-card name-f-js" data-pair="F" data-type="name" tabindex="0"><span class="card-label-text">F</span></div>
+                        <div class="card name-card name-g-js" data-pair="G" data-type="name" tabindex="0"><span class="card-label-text">G</span></div>
+                        <div class="card name-card name-a-js" data-pair="A" data-type="name" tabindex="0"><span class="card-label-text">A</span></div>
+                        <div class="card name-card name-h-js" data-pair="H" data-type="name" tabindex="0"><span class="card-label-text">H</span></div>
+                    </div>
+                </div>
+
+                <div class="success-popup" id="successPopup">
+                    <p>🎉 Bra jobbat!</p>
+                    <a href="#" class="play-again" id="playAgainButton">Spela igen</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>© <span id="current-year"></span> Noter - Lär dig noter enkelt och roligt!</p>
+    </footer>
+
+    <script src="scripts/game.js"></script>
+</body>
+</html> 

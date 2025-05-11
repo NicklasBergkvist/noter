@@ -1,0 +1,218 @@
+.info-page {
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.info-page h1 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Tab navigation */
+.info-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 2px solid var(--primary-accent);
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+  background-color: rgba(74, 144, 226, 0.1);
+}
+
+.tab-button.active {
+  background-color: var(--primary-accent);
+  color: white;
+}
+
+/* Tab content */
+.tab-content {
+  background-color: white;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.tab-panel {
+  display: none;
+  padding: 2rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.tab-panel h2 {
+  color: var(--primary-accent);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.info-card {
+  background-color: var(--bg-color);
+  border-radius: var(--card-border-radius);
+  padding: 1.5rem;
+}
+
+.info-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.info-card h3 {
+  margin: 1.5rem 0 0.75rem;
+  color: var(--text-color);
+}
+
+.info-card ul, .info-card ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.info-card li {
+  margin-bottom: 0.5rem;
+}
+
+/* Note display in music theory tab */
+.note-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.note-info {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.note-image {
+  width: 60px;
+  height: 60px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  margin-right: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.note-image::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary-accent);
+  border-radius: 50%;
+  position: absolute;
+}
+
+/* Position the note appropriately for each note */
+.note-image.note-c::after { bottom: 10px; }
+.note-image.note-d::after { bottom: 20px; }
+.note-image.note-e::after { bottom: 30px; }
+.note-image.note-f::after { bottom: 40px; }
+.note-image.note-g::after { top: 20px; }
+.note-image.note-a::after { top: 10px; }
+.note-image.note-h::after { top: 0px; }
+
+.note-description {
+  flex: 1;
+}
+
+/* How to play section */
+.howto-list {
+  counter-reset: howto-counter;
+  list-style: none;
+  padding-left: 0;
+}
+
+.howto-list li {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 3rem;
+}
+
+.howto-list li::before {
+  content: counter(howto-counter);
+  counter-increment: howto-counter;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: var(--primary-accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.howto-list h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.tips-section {
+  background-color: #fcf8e3;
+  border-left: 4px solid #faebcc;
+  padding: 1rem 1.5rem;
+  margin-top: 2rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.tips-section h3 {
+  color: #8a6d3b;
+  margin-top: 0;
+}
+
+.tips-section ul {
+  margin-bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .tab-panel {
+    padding: 1.5rem;
+  }
+  
+  .info-tabs {
+    gap: 0.5rem;
+  }
+  
+  .tab-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .note-table {
+    grid-template-columns: 1fr;
+  }
+  
+  .howto-list li {
+    padding-left: 2.5rem;
+  }
+} 
